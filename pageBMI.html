@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            margin: 20px;
+            text-align: center;
+            background-color: #f7f7f7;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        div {
+            margin-bottom: 15px;
+        }
+        input[type="number"] {
+            padding: 8px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: rgb(222, 245, 122);
+            color: black;
+            border: none;
+        }
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        #recommend {
+            text-align: left;
+        }
+        #recommend p {
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #e5e5e5;
+        }
+    </style>
+</head>
+<body>
+  <h1>โปรแกรมคำนวน BMI</h1>
+  <div>
+    <h3>น้ำหนักตัว kg.</h3>
+    <input type="number" id="weight" />
+  </div>
+  <div>
+    <h3>ส่วนสูง cm.</h3>
+    <input type="number" id="height" />
+  </div>
+  <br />
+  <button onclick="calculater()">คำนวน</button>
+  <div id="result"></div>
+  <div id="recommend"></div>
+  <script>
+    function calculater() {
+      let weight = document.getElementById("weight").value;
+      let height = document.getElementById("height").value;
+      let bmi = weight / ((height / 100) * (height / 100));
+      document.getElementById("result").innerHTML = "BMI: " + bmi.toFixed(2);
+      if (bmi < 18.5) {
+        document.getElementById("recommend").innerHTML =
+          "<p> น้ำหนักน้อยกว่ามาตรฐาน คุณมีน้ำหนักน้อยหรือผอม โดยทั่วไป ค่าดัชนีมวลกายปกติมีค่าน้อยกว่า 18.50 </p>" +
+          "<br>";
+      } else if (bmi >= 18.5 && bmi < 22.9) {
+        document.getElementById("recommend").innerHTML =
+          "<p> น้ำหนักปกติคุณมีน้ำหนักอยู่ในเกณฑ์มาตรฐาน ค่าดัชนีมวลกายมีค่าระหว่าง 18.50 - 22.90 </p>" +
+          "<br>";
+      } else if (bmi >= 23 && bmi < 24.9) {
+        document.getElementById("recommend").innerHTML =
+          "<p> ท้วม / อ้วนระดับ 1 ถ้าคุณไม่ใช่คนออกกำลังกาย คุณเริ่มมีน้ำหนักเกินมาตรฐาน หรือมีรูปร่างท้วม ค่าดัชนีมวลกายมีค่าระหว่าง 23 - 24.90 </p>" +
+          "<br>";
+      } else if (bmi >= 25 && bmi < 29.90) {
+        document.getElementById("recommend").innerHTML =
+          "<p> อ้วนระดับ 2 ถ้าคุณไม่ใช่คนออกกำลังกาย คุณเข้าเกณฑ์อ้วนแล้ว (อ้วนระดับ 2) ค่าดัชนีมวลกายมีค่าระหว่าง 25 - 29.90</p>" +
+          "<br>";
+      } else if (bmi > 30 ) {
+        document.getElementById("recommend").innerHTML =
+          "<p> อ้วนระดับ 3 แย่แล้ว!! ถ้าคุณไม่ใช้คนออกกำลังกาย หรือนักเพาะกาย คุณอ้วนมากแล้ว (อ้วนระดับ 3) ค่าดัชนีมวลกายมีค่ามากกว่า 30 </p>" +
+          "<br>";
+      }
+    }
+  </script>
+</body>
+</html>
